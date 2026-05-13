@@ -8,6 +8,13 @@ addBtn.addEventListener('click', () => {
 
   const li = document.createElement('li');
   li.textContent = text;
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.classList.add('delete-btn');
+  deleteBtn.addEventListener('click', () => li.remove());
+
+  li.appendChild(deleteBtn);
   taskList.appendChild(li);
 
   taskInput.value = '';
