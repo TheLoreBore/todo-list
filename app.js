@@ -2,6 +2,8 @@ const taskInput = document.getElementById('taskInput');
 const addBtn = document.getElementById('addBtn');
 const taskList = document.getElementById('taskList');
 
+let filter = 'all';
+
 addBtn.addEventListener('click', () => {
   const text = taskInput.value.trim();
   if (text === '') return;
@@ -14,6 +16,7 @@ addBtn.addEventListener('click', () => {
   completeBtn.classList.add('complete-btn');
   completeBtn.addEventListener('click', () => {
     li.classList.toggle('completed');
+    applyFilter();
   });
 
   const deleteBtn = document.createElement('button');
@@ -26,4 +29,15 @@ addBtn.addEventListener('click', () => {
   taskList.appendChild(li);
 
   taskInput.value = '';
+  applyFilter();
 });
+
+function applyFilter() {
+  const tasks = taskList.querySelectorAll('li');
+  tasks.forEach(task => {
+    const isCompleted = task.classList.contains('completed');
+    if (filter === 'all') task.style.display = '';
+    else if (filter === 'active') task.style.display = isCompleted ? 'none' : '';
+    else if (filter === 'done') task.style.display = isCompleted ? '' : 'none';
+  });
+}
