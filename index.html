@@ -13,6 +13,11 @@
         <input type="text" id="taskInput" placeholder="Add a new task..." />
         <button id="addBtn">Add</button>
       </div>
+      <div class="filters">
+        <button onclick="filter='all'; applyFilter()">All</button>
+        <button onclick="filter='active'; applyFilter()">Active</button>
+        <button onclick="filter='done'; applyFilter()">Done</button>
+      </div>
       <ul id="taskList"></ul>
     </div>
     <script src="app.js"></script>
