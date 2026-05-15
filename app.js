@@ -9,7 +9,31 @@ addBtn.addEventListener('click', () => {
   if (text === '') return;
 
   const li = document.createElement('li');
+<<<<<<< Updated upstream
   li.textContent = text;
+=======
+
+  const taskText = document.createElement('span');
+  taskText.classList.add('task-text');
+  taskText.textContent = text;
+
+  const dueDate = document.getElementById('dueDateInput').value;
+
+  li.appendChild(taskText);
+
+  if (dueDate) {
+    const dateLabel = document.createElement('span');
+    dateLabel.classList.add('due-date');
+    const formatted = new Date(dueDate + 'T00:00:00').toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric'
+    });
+    dateLabel.textContent = '📅 ' + formatted;
+    li.appendChild(dateLabel);
+  }
+
+  const actions = document.createElement('div');
+  actions.classList.add('task-actions');
+>>>>>>> Stashed changes
 
   const completeBtn = document.createElement('button');
   completeBtn.textContent = 'Done';
@@ -24,11 +48,18 @@ addBtn.addEventListener('click', () => {
   deleteBtn.classList.add('delete-btn');
   deleteBtn.addEventListener('click', () => li.remove());
 
+<<<<<<< Updated upstream
   li.appendChild(completeBtn);
   li.appendChild(deleteBtn);
+=======
+  actions.appendChild(completeBtn);
+  actions.appendChild(deleteBtn);
+  li.appendChild(actions);
+>>>>>>> Stashed changes
   taskList.appendChild(li);
 
   taskInput.value = '';
+  document.getElementById('dueDateInput').value = '';
   applyFilter();
 });
 
