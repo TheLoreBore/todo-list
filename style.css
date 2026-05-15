@@ -168,3 +168,26 @@ li:hover {
   text-decoration: line-through;
   color: #5a4a3a;
 }
+
+#dueDateInput {
+  padding: 12px 16px;
+  background-color: #1a1a1a;
+  border: 1px solid #c8873a55;
+  border-radius: 8px;
+  color: #f0e6d3;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+#dueDateInput:focus {
+  border-color: #c8873a;
+}
+
+.due-date {
+  font-size: 0.78rem;
+  color: #c8873a;
+  margin-left: 12px;
+  opacity: 0.85;
+}

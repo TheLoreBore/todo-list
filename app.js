@@ -15,6 +15,20 @@ addBtn.addEventListener('click', () => {
   taskText.classList.add('task-text');
   taskText.textContent = text;
 
+  const dueDate = document.getElementById('dueDateInput').value;
+
+  li.appendChild(taskText);
+
+  if (dueDate) {
+    const dateLabel = document.createElement('span');
+    dateLabel.classList.add('due-date');
+    const formatted = new Date(dueDate + 'T00:00:00').toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric'
+    });
+    dateLabel.textContent = '📅 ' + formatted;
+    li.appendChild(dateLabel);
+  }
+
   const actions = document.createElement('div');
   actions.classList.add('task-actions');
 
@@ -33,11 +47,11 @@ addBtn.addEventListener('click', () => {
 
   actions.appendChild(completeBtn);
   actions.appendChild(deleteBtn);
-  li.appendChild(taskText);
   li.appendChild(actions);
   taskList.appendChild(li);
 
   taskInput.value = '';
+  document.getElementById('dueDateInput').value = '';
   applyFilter();
 });
 
