@@ -1,6 +1,7 @@
 const taskInput = document.getElementById('taskInput');
 const addBtn = document.getElementById('addBtn');
 const taskList = document.getElementById('taskList');
+const filterBtns = document.querySelectorAll('.filters button');
 
 let filter = 'all';
 
@@ -9,9 +10,6 @@ addBtn.addEventListener('click', () => {
   if (text === '') return;
 
   const li = document.createElement('li');
-<<<<<<< Updated upstream
-  li.textContent = text;
-=======
 
   const taskText = document.createElement('span');
   taskText.classList.add('task-text');
@@ -33,7 +31,6 @@ addBtn.addEventListener('click', () => {
 
   const actions = document.createElement('div');
   actions.classList.add('task-actions');
->>>>>>> Stashed changes
 
   const completeBtn = document.createElement('button');
   completeBtn.textContent = 'Done';
@@ -48,19 +45,23 @@ addBtn.addEventListener('click', () => {
   deleteBtn.classList.add('delete-btn');
   deleteBtn.addEventListener('click', () => li.remove());
 
-<<<<<<< Updated upstream
-  li.appendChild(completeBtn);
-  li.appendChild(deleteBtn);
-=======
   actions.appendChild(completeBtn);
   actions.appendChild(deleteBtn);
   li.appendChild(actions);
->>>>>>> Stashed changes
   taskList.appendChild(li);
 
   taskInput.value = '';
   document.getElementById('dueDateInput').value = '';
   applyFilter();
+});
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filter = btn.textContent.toLowerCase();
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter();
+  });
 });
 
 function applyFilter() {
@@ -72,3 +73,6 @@ function applyFilter() {
     else if (filter === 'done') task.style.display = isCompleted ? '' : 'none';
   });
 }
+
+// Set All button as active by default
+filterBtns[0].classList.add('active');
